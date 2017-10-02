@@ -1,0 +1,21 @@
+{
+  "name": "next-stub",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drwndrsn/next-stub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drwndrsn/next-stub/issues"
+  },
+  "homepage": "https://github.com/drwndrsn/next-stub#readme"
+}
