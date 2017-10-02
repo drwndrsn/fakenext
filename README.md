@@ -1,4 +1,6 @@
 # next-stub
+Unit test middleware by replacing next() with a callback
+
 ```javascript
 const next = require('next-stub')
 const assert = require('assert')
