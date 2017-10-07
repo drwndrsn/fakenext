@@ -2,19 +2,42 @@
 Unit test middleware by replacing next() with a callback
 
 ```javascript
-const next = require('next-stub')
-const assert = require('assert')
+const stub = require('../index')
+const chai = require('chai'),
+    expect = chai.expect
 
-let req = {body: {}}
+chai.config.includeStack = true
+ 
+let req = {body: {user: "bob"}}
     res = {locals: {}}
-
-let middleware = function (req, res, next) {
-    req.body.user = "bob"
+ 
+let middlewareBob = function (req, res, next) {
     res.locals.user = req.body.user.toUpperCase()
     next()
 }
 
-middleware(req,res,next( function (err, req, res) {
-    assert(res.locals.user === 'BOB')
-},req,res)) // < < < < 
+let middlewareErr = function (req, res, next) {
+    if (req.body.user !== "bleh") {
+        next(Error('bob is not bleh'))
+    }
+}
+
+describe('middleware next is stubbed', () => {
+    it('req and res work when next called with no arg', () => {
+
+        stub(middlewareBob, req, res, function (err, req, res) {
+            expect(res.locals.user).to.equal('BOB')
+            expect(err).to.not.exist
+        })
+
+    })
+
+    it('err handled if arg passed to next', () => {
+
+        stub(middlewareErr, req, res, function (err, req, res) {
+            expect(err).to.exist
+        })
+
+    })
+})
 ```
