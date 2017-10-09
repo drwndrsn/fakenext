@@ -1,4 +1,4 @@
-# next-stub
+# FakeNext
 Unit test middleware by replacing next() with a callback
 
 ```javascript
