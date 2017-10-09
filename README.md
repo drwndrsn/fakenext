@@ -2,7 +2,7 @@
 Unit test middleware by replacing next() with a callback
 
 ```javascript
-const stub = require('../index')
+const stub = require('fakenext')
 const chai = require('chai'),
     expect = chai.expect
 
@@ -22,10 +22,10 @@ let middlewareErr = function (req, res, next) {
     }
 }
 
-describe('middleware next is stubbed', () => {
+describe('middleware next() is faked', () => {
     it('req and res work when next called with no arg', () => {
 
-        stub(middlewareBob, req, res, function (err, req, res) {
+        fakenext(middlewareBob, req, res, function (err, req, res) {
             expect(res.locals.user).to.equal('BOB')
             expect(err).to.not.exist
         })
@@ -34,8 +34,8 @@ describe('middleware next is stubbed', () => {
 
     it('err handled if arg passed to next', () => {
 
-        stub(middlewareErr, req, res, function (err, req, res) {
-            expect(err).to.exist
+        fakenext(middlewareErr, req, res, function (err, req, res) {
+            expect(err.message).to.match(/bob is not bleh/)
         })
 
     })

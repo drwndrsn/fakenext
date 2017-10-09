@@ -1,4 +1,4 @@
-function stub (middleware, request, response, callback) {
+function fakenext (middleware, request, response, callback) {
 
     var next = (function (cb, req, res) {
         return function (err) {
@@ -9,5 +9,5 @@ function stub (middleware, request, response, callback) {
     middleware(request, response, next)
 }
 
-module.exports = stub
+module.exports = fakenext
 
