@@ -2,7 +2,7 @@
 Unit test middleware by replacing next() with a callback
 
 ```javascript
-const stub = require('fakenext')
+const fakenext = require('fakenext')
 const chai = require('chai'),
     expect = chai.expect
 
